@@ -2,6 +2,8 @@
 
 This repository contains a Dockerfile to build a Docker image with Singularity and MitoFinder pre-installed. The image is designed to run with privileged access to support Singularity's functionality.
 
+You can find the original MitoFinder repo here: https://github.com/RemiAllio/MitoFinder
+
 ## Table of Contents
 1. [Prerequisites](#prerequisites)
 2. [Building the Docker Image](#building-the-docker-image)
