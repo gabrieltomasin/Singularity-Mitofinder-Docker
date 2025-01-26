@@ -41,6 +41,10 @@
     # Pull MitoFinder image
     WORKDIR /home/ubuntu
     RUN singularity pull --arch amd64 library://remiallio/default/mitofinder:v1.4.2
+
+    COPY ./run_all_sequences.sh /home/ubuntu/run_all_sequences.sh
+
+    RUN chmod +x /home/ubuntu/run_all_sequences.sh
     
     # ----------- Stage 2: Final Minimal Image -----------
     FROM ubuntu:24.04
