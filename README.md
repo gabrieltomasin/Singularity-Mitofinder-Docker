@@ -38,7 +38,10 @@ The build process may take several minutes, as it involves compiling Singularity
 To run the container interactively with privileged access, use the following command:
 
 ```bash
-docker run --privileged -it --rm singularity-mitofinder:latest
+docker run --privileged -it --rm \
+  -v /path/to/input:/data/input \
+  -v /path/to/output:/data/output \
+  bash
 ```
 
 ### Explanation of Flags:
@@ -71,9 +74,19 @@ This will display the help menu for MitoFinder.
    ```
 4. Run MitoFinder with your input data:
    ```bash
-   singularity exec /home/ubuntu/mitofinder_v1.4.2.sif mitofinder -a input.fasta -o output_folder
+   singularity exec /home/ubuntu/mitofinder_v1.4.2.sif mitofinder -a input.fasta [additional_mitofinder_args...]
    ```
 
+### Running a batch annotation over a directory containing .contig.fasta files
+- **Inside the container:** run `./run_all_sequences.sh <input_folder> <output_folder> [additional_mitofinder_args...]`
+- **Outsider the container:** This is the most straightforward method. Just run:
+```bash
+docker run --privileged -it --rm \
+-v /path/to/input:/data/input \
+-v /path/to/output:/data/output \
+singularity-mitofinder:latest \
+./run_all_sequences.sh /data/input /data/output [additional_mitofinder_args...]
+```
 ---
 
 ## Notes
